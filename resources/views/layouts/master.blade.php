@@ -11,7 +11,7 @@
 
   <!-- Theme style -->
   <link rel="stylesheet" href="{{asset('css/app.css')}}">
-
+  <link rel="stylesheet" href="{{asset('css/post/datatables.css')}}">
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper" id='app'>
@@ -58,7 +58,7 @@
           <img src="{{asset('images/avatar5.png')}}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Jasbin Karki</a>
+          <a href="#" class="d-block">{{Auth::user()->name}}</a>
         </div>
       </div>
 
@@ -77,36 +77,33 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link active">
+                <a href="{{route('home')}}" class="nav-link">
                   <i class="fa fa-circle-o nav-icon"></i>
-                  <p>Active Page</p>
+                  <p>Main</p>
                 </a>
               </li>
+            </ul>
+             </li>
+            <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+                <i class="nav-icon fa fa-book"></i>
+              <p>
+                Posts
+                <i class="right fa fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="fa fa-circle-o nav-icon"></i>
-                  <p>Inactive Page</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{route('logout')}}" class="nav-link">
-                  <i class="fa fa-circle-o nav-icon"></i>
-                  <p>Logout</p>
-
+                <a href="{{route('posts.index')}}" class="nav-link">
+                  <i class="nav-icon fa fa-book"></i>
+                  <p>All Posts</p>
                 </a>
               </li>
             </ul>
           </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fa fa-th"></i>
-              <p>
-                Simple Link
-                <span class="right badge badge-danger">New</span>
-              </p>
-            </a>
-          </li>
         </ul>
+
+
       </nav>
       <!-- /.sidebar-menu -->
     </div>
@@ -120,7 +117,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Posts</h1>
+            <h1 class="m-0 text-dark">Dashboard</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -143,15 +140,6 @@
   </div>
   <!-- /.content-wrapper -->
 
-  {{-- <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-    <div class="p-3">
-      <h5>Title</h5>
-      <p>Sidebar content</p>
-    </div>
-  </aside>
-  <!-- /.control-sidebar --> --}}
 
   <!-- Main Footer -->
   <footer class="main-footer">
@@ -167,9 +155,13 @@
 
 <!-- REQUIRED SCRIPTS -->
 
-<!-- AdminLTE App -->
+<!-- Main Scripts -->
 <script src="{{asset('js/app.js')}}"></script>
+
 <!-- Edit Form Script -->
 <script src="{{asset('js/post/edit.js')}}"></script>
+<!-- Data Tables Scritps-->
+<script src="{{asset('js/post/datatables.js')}}"></script>
+@yield('js')
 </body>
 </html>

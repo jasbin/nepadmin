@@ -4,7 +4,7 @@
     <button type="button" class="btn btn-primary mb-2 mt-2" data-toggle="modal" data-target="#create">
             Add New Post
     </button>
-    <table class="table table-bordered table-striped">
+    <table id="myTable" class="table table-bordered table-striped" >
             <thead>
                 <tr>
                     <th>Title</th>
@@ -26,6 +26,8 @@
                 @endforeach
             </tbody>
         </table>
+
+
 
     <!-- Button trigger modal -->
 
@@ -109,5 +111,11 @@
                 </div>
                 </div>
         </div>
-
+@endsection
+@section('js')
+        <script>
+            $(document).ready( function () {
+            $('#myTable').DataTable();
+            } );
+        </script>
 @endsection

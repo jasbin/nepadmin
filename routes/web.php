@@ -11,17 +11,28 @@
 |
 */
 
-Route::get('/', 'PostsController@index');
+//Route::get('/', 'PostsController@index');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::post('posts/store', 'PostsController@store')->name('posts.store');
-Route::post('posts/update','PostsController@update')->name('posts.update');
-Route::post('posts/delete', 'PostsController@delete')->name('posts.delete');
-// Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
-//     Route::get('/dashboard', 'PostsController@index')->name('dashboard');
-// });
+// Route::post('posts/store', 'PostsController@store')->name('posts.store');
+// Route::post('posts/update','PostsController@update')->name('posts.update');
+// Route::post('posts/delete', 'PostsController@delete')->name('posts.delete');
+
+Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
+    Route::get('/dashboard/posts', 'PostsController@index')->name('posts.index');
+});
+Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
+    Route::post('posts/store', 'PostsController@store')->name('posts.store');
+});
+
+Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
+    Route::post('posts/update', 'PostsController@update')->name('posts.update');
+});
+Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
+    Route::post('posts/delete', 'PostsController@delete')->name('posts.delete');
+});
 
 //logout
 Route::get('logout', 'AdminController@logout')->name('logout');

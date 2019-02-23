@@ -22,3 +22,14 @@ $('#edit').on('show.bs.modal', function (event) {
     var modal = $(this)
     modal.find('.modal-body #post_id').val(id)
   })
+
+// //make link active
+// $(".nav a p").on("click", function() {
+//     $(".nav").find(".active").removeClass("active");
+//     $(this).parent().addClass("active");
+// });
+// $(".nav-sidebar").on("click", ".nav-link", function(e) {
+//     e.preventDefault();
+//     $(".nav-link").removeClass("active");
+//     $(this).addClass("active");
+//   });
