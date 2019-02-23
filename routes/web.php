@@ -11,10 +11,17 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'PostsController@index');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::post('posts/store', 'PostsController@store')->name('posts.store');
+Route::post('posts/update','PostsController@update')->name('posts.update');
+Route::post('posts/delete', 'PostsController@delete')->name('posts.delete');
+// Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
+//     Route::get('/dashboard', 'PostsController@index')->name('dashboard');
+// });
+
+//logout
+Route::get('logout', 'AdminController@logout')->name('logout');
