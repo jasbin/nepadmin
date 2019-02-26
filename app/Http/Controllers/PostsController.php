@@ -15,18 +15,10 @@ class PostsController extends Controller
     public function index()
     {
         $posts = Post::all();
+        //$posts = Post::orderBy('created_at',  'desc')->get();
         return view('posts.index')->with('posts', $posts);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -36,7 +28,6 @@ class PostsController extends Controller
      */
     public function store(PostsRequest $request)
     {
-
         $post = new Post;
         $post->title = $request->input('title');
         $post->body = $request->input('body');
@@ -45,26 +36,15 @@ class PostsController extends Controller
         return back();
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+    public function getByID($id){
+        $status = false;
+        // Check if id is empty or not
+        if(!empty($id)){
+            $post = Post::select('id','title','body')->find($id);
+            $status = !empty($post) ? true : false;
+            return response()->json(['status' => $status, 'result' => $post]);
+        }
+        return response()->json(['status' => $status]);
     }
 
     /**

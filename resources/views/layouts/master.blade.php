@@ -12,6 +12,8 @@
   <!-- Theme style -->
   <link rel="stylesheet" href="{{asset('css/app.css')}}">
   <link rel="stylesheet" href="{{asset('css/post/datatables.css')}}">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper" id='app'>
@@ -67,14 +69,14 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item has-treeview menu-open">
-            <a href="#" class="nav-link active">
-              <i class="nav-icon fa fa-dashboard"></i>
-              <p>
-                Dashboard
-                <i class="right fa fa-angle-left"></i>
-              </p>
-            </a>
+            <li class="nav-item has-treeview menu-open">
+                <a href="#" class="nav-link active">
+                <i class="nav-icon fa fa-dashboard"></i>
+                <p>
+                    Dashboard
+                    <i class="right fa fa-angle-left"></i>
+                </p>
+                </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="{{route('home')}}" class="nav-link">
@@ -83,7 +85,7 @@
                 </a>
               </li>
             </ul>
-             </li>
+            </li>
             <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
                 <i class="nav-icon fa fa-book"></i>
@@ -100,10 +102,43 @@
                 </a>
               </li>
             </ul>
+            </li>
+            <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fa fa-strikethrough"></i>
+              <p>
+                Services
+                <i class="right fa fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{route('services.index')}}" class="nav-link">
+                    <i class="fa fa-asterisk nav-icon"></i>
+                  <p>All Service</p>
+                </a>
+              </li>
+
+            </ul>
+            </li>
+            <li class="nav-item">
+                <a href="{{route('gallery.index')}}" class="nav-link">
+                  <i class="nav-icon fa fa-th"></i>
+                  <p>
+                    Galleries
+                  </p>
+                </a>
+            </li>
+          <li class="nav-item">
+            <a href="{{route('logout')}}" class="nav-link">
+              <i class="nav-icon fa fa-code"></i>
+
+              <p>
+                Logout
+              </p>
+            </a>
           </li>
         </ul>
-
-
       </nav>
       <!-- /.sidebar-menu -->
     </div>
@@ -157,11 +192,17 @@
 
 <!-- Main Scripts -->
 <script src="{{asset('js/app.js')}}"></script>
+<script src="{{asset('js/sidebaractive.js')}}"></script>
+@yield('script')
 
-<!-- Edit Form Script -->
-<script src="{{asset('js/post/edit.js')}}"></script>
 <!-- Data Tables Scritps-->
 <script src="{{asset('js/post/datatables.js')}}"></script>
-@yield('js')
+
+<script>
+  $(document).ready( function () {
+    $('#myTable').DataTable();
+  } );
+</script>
+
 </body>
 </html>
