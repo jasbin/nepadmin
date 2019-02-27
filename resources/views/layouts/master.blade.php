@@ -79,7 +79,7 @@
                 </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{route('home')}}" class="nav-link">
+                <a href="{{route('home')}}" class="nav-link nav-link {{ Route::current()->getName() == 'home' ? 'active' : '' }}">
                   <i class="fab fa-elementor nav-icon"></i>
                   <p>Main</p>
                 </a>
@@ -96,7 +96,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{route('posts.index')}}" class="nav-link">
+                <a href="{{route('posts.index')}}" class="nav-link {{ Route::current()->getName() == 'posts.index' ? 'active' : '' }}">
                   <i class="nav-icon fa fa-book"></i>
                   <p>All Posts</p>
                 </a>
@@ -113,7 +113,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{route('services.index')}}" class="nav-link">
+                <a href="{{route('services.index')}}" class="nav-link {{ Route::current()->getName() == 'services.index' ? 'active' : '' }}">
                     <i class="fa fa-asterisk nav-icon"></i>
                   <p>All Service</p>
                 </a>
@@ -122,7 +122,7 @@
             </ul>
             </li>
             <li class="nav-item">
-                <a href="{{route('gallery.index')}}" class="nav-link">
+                <a href="{{route('gallery.index')}}" class="nav-link {{ Route::current()->getName() == 'gallery.index' ? 'active' : '' }}">
                   <i class="nav-icon fa fa-th"></i>
                   <p>
                     Galleries
