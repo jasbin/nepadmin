@@ -5,13 +5,21 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\CategoryItem;
+use App\Service;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class GalleryController extends Controller
 {
-    public function index(){
-        $categories = Category::all();
+    public function index(Request $request){
+
+        if (!empty($request->search)){
+            $search = $request->search;
+            $categories = Category::where('title','LIKE','%'.$search.'%')->orWhere('description','LIKE','%'.$search)->orderBy('created_at','desc')->paginate(7);
+            return view('gallery.index')->with('categories', $categories);
+        }
+
+        $categories = Category::orderBy('created_at', 'desc')->paginate(7);
         
         return view('gallery.index')->with('categories', $categories);
     }

@@ -8,8 +8,14 @@ use App\Http\Requests\ServiceRequest;
 class ServicesController extends Controller
 {
     //serves as main index page of service (gives all service details as response)
-    public function index(){
-        $services = Service::all();
+    public function index(Request $request){
+        if (!empty($request->search)){
+            $search = $request->search;
+            $services = Service::where('title','LIKE','%'.$search.'%')->orWhere('body','LIKE','%'.$search)->orderBy('created_at','desc')->paginate(7);
+            return view('services.index')->with('services', $services);
+        }
+
+        $services = Service::orderBy('created_at', 'desc')->paginate(7);
         return view('services.index')->with('services', $services);
     }
 

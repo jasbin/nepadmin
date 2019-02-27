@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="{{asset('css/app.css')}}">
   <link rel="stylesheet" href="{{asset('css/post/datatables.css')}}">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-
+  <link rel="stylesheet" href="{{asset('css/search.css')}}">
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper" id='app'>
@@ -71,7 +71,7 @@
                with font-awesome or any other icon font library -->
             <li class="nav-item has-treeview menu-open">
                 <a href="#" class="nav-link active">
-                <i class="nav-icon fa fa-dashboard"></i>
+                  <i class="nav-icon fa fa-tachometer-alt"></i>
                 <p>
                     Dashboard
                     <i class="right fa fa-angle-left"></i>
@@ -80,7 +80,7 @@
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="{{route('home')}}" class="nav-link">
-                  <i class="fa fa-circle-o nav-icon"></i>
+                  <i class="fab fa-elementor nav-icon"></i>
                   <p>Main</p>
                 </a>
               </li>
@@ -189,20 +189,11 @@
 <!-- ./wrapper -->
 
 <!-- REQUIRED SCRIPTS -->
-
 <!-- Main Scripts -->
 <script src="{{asset('js/app.js')}}"></script>
-<script src="{{asset('js/sidebaractive.js')}}"></script>
 @yield('script')
-
 <!-- Data Tables Scritps-->
 <script src="{{asset('js/post/datatables.js')}}"></script>
-
-<script>
-  $(document).ready( function () {
-    $('#myTable').DataTable();
-  } );
-</script>
 
 </body>
 </html>

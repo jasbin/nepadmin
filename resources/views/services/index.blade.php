@@ -4,19 +4,22 @@
     <button type="button" class="btn btn-primary mb-2 mt-2" data-toggle="modal" data-target="#create">
             Add New Service
     </button>
-    <table id="myTable" class="table table-bordered table-striped" >
+    <form action="{{route('services.index')}}" method="GET">
+        @include('inc.search')
+    </form>
+    <table id="myTable" class="table table-bordered table-striped text-center" >
             <thead>
                 <tr>
-                    <th>Title</th>
-                    <th>Body</th>
-                    <th>Modify</th>
+                    <th style="width: 20%;">Title</th>
+                    <th style="width: 60%;">Body</th>
+                    <th style="width: 20%;">Modify</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($services as $service)
                     <tr>
                             <td>{{$service->title}}</td>
-                            <td>{{$service->body}}</td>
+                            <td>{{str_limit($service->body,50,"...")}}</td>
                             <td>
                             <button type="button" class="btn btn-primary mb-2 mt-2" data-myid='{{$service->id}}' data-mytitle='{{$service->title}}' data-route='{{ URL::to('admin/services/getByID') }}' data-toggle="modal" data-target="#edit">
                                             Edit</button>
@@ -26,8 +29,7 @@
                 @endforeach
             </tbody>
         </table>
-
-
+        {{$services->links()}}
 
     <!-- Button trigger modal -->
 

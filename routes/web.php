@@ -57,7 +57,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
 });
 
 
-//galery
+//gallery
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::get('/dashboard/gallery', 'GalleryController@index')->name('gallery.index');
 });
@@ -65,6 +65,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::post('/dashboard/store', 'GalleryController@store')->name('gallery.store');
     Route::get('/gallery/getByID/{id}', 'GalleryController@getByID')->name('gallery.getByID');
+    Route::get('/gallery/images/{id}', 'GalleryItemController@index')->name('gallery.images');
+    Route::post('/gallery/image/store', 'GalleryItemController@store')->name('gallery.image.store');
+    Route::post('/gallery/image/update', 'GalleryItemController@update')->name('gallery.image.update');
+    Route::get('/gallery/image/delete', 'GalleryItemController@delete')->name('gallery.image.delete');
 });
 
 //update gallery in tables in backend

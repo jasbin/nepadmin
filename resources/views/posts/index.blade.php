@@ -4,20 +4,26 @@
     <button type="button" class="btn btn-primary mb-2 mt-2" data-toggle="modal" data-target="#create">
             Add New Post
     </button>
-    <table id="myTable" class="table table-bordered table-striped" >
+    <form action="{{route('posts.index')}}" method="GET">
+
+        @include('inc.search')
+
+    </form>
+    <table id="myTable" class="table table-bordered table-striped text-center" >
             <thead>
                 <tr>
-                    <th>Title</th>
-                    <th>Body</th>
-                    <th>Posted On</th>
-                    <th>Modify</th>
+                    <th style="width: 20%;">Title</th>
+                    <th style="width: 50%;">Body</th>
+                    <th style="width: 10%;">Posted On</th>
+                    <th style="width: 20%;">Modify</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($posts as $post)
+
                     <tr>
                             <td>{{$post->title}}</td>
-                            <td>{{$post->body}}</td>
+                            <td>{{str_limit($post->body,50,"...")}}</td>
                             <td>{{$post->created_at}}</td>
                             <td>
                             <button type="button" class="btn btn-primary mb-2 mt-2" data-myid={{$post->id}} data-route={{ URL::to('admin/posts/getByID') }} data-toggle="modal" data-target="#edit">
@@ -28,7 +34,7 @@
                 @endforeach
             </tbody>
         </table>
-
+    {{$posts->appends($_GET)->links()}}
 
 
     <!-- Button trigger modal -->
@@ -116,13 +122,7 @@
                 </div>
         </div>
 @endsection
-@section('js')
-        <script>
-            $(document).ready( function () {
-            $('#myTable').DataTable();
-            } );
-        </script>
-@endsection
+
 @section('script')
     <script src="{{asset('js/post/scripts.js')}}"></script>
 @endsection

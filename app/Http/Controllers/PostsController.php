@@ -12,11 +12,17 @@ class PostsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $posts = Post::all();
-        //$posts = Post::orderBy('created_at',  'desc')->get();
-        return view('posts.index')->with('posts', $posts);
+        if(!empty($request->search)){
+            $search = $request->search;
+            $posts = Post::where('title','LIKE','%'.$search.'%')->orWhere('body','LIKE','%'.$search)->orderBy('created_at','desc')->paginate(2);
+            return view('posts.index')->with('posts',$posts);
+        }
+            //$posts = Post::all();
+            //$posts = Post::orderBy('created_at',  'desc')->get();
+            $posts = Post::orderBy('created_at',  'desc')->paginate(3);
+            return view('posts.index')->with('posts', $posts);
     }
 
 
