@@ -9,23 +9,28 @@
         @include('inc.search')
 
     </form>
+
+    {{--checkbox options--}}
+    @include('inc.checkbox_posts')
+
+
     <table id="myTable" class="table table-bordered table-striped text-center" >
             <thead>
                 <tr>
-                    <th style="width: 20%;">Title</th>
-                    <th style="width: 50%;">Body</th>
-                    <th style="width: 10%;">Posted On</th>
-                    <th style="width: 20%;">Modify</th>
+                    <th style="width: 20%;" class="title">Title</th>
+                    <th style="width: 50%;" class="body">Body</th>
+                    <th style="width: 10%;" class="posted_on">Posted On</th>
+                    <th style="width: 20%;" class="modify">Modify</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($posts as $post)
 
                     <tr>
-                            <td>{{$post->title}}</td>
-                            <td>{{str_limit($post->body,50,"...")}}</td>
-                            <td>{{$post->created_at}}</td>
-                            <td>
+                            <td class="title">{{$post->title}}</td>
+                            <td class="body">{{str_limit($post->body,50,"...")}}</td>
+                            <td class="posted_on">{{$post->created_at}}</td>
+                            <td class="modify">
                             <button type="button" class="btn btn-primary mb-2 mt-2" data-myid={{$post->id}} data-route={{ URL::to('admin/posts/getByID') }} data-toggle="modal" data-target="#edit">
                                             Edit</button>
                                 <button class="btn btn-danger" data-toggle="modal" data-myid={{$post->id}} data-target="#delete">Delete</button>
@@ -126,3 +131,8 @@
 @section('script')
     <script src="{{asset('js/post/scripts.js')}}"></script>
 @endsection
+
+@section('checkbox')
+
+@endsection
+

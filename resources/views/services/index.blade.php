@@ -7,6 +7,9 @@
     <form action="{{route('services.index')}}" method="GET">
         @include('inc.search')
     </form>
+
+    @include('inc.checkbox_services')
+
     <table id="myTable" class="table table-bordered table-striped text-center" >
             <thead>
                 <tr>
@@ -18,9 +21,9 @@
             <tbody>
                 @foreach ($services as $service)
                     <tr>
-                            <td>{{$service->title}}</td>
-                            <td>{{str_limit($service->body,50,"...")}}</td>
-                            <td>
+                            <td class="title">{{$service->title}}</td>
+                            <td class="body">{{str_limit($service->body,50,"...")}}</td>
+                            <td class="modify">
                             <button type="button" class="btn btn-primary mb-2 mt-2" data-myid='{{$service->id}}' data-mytitle='{{$service->title}}' data-route='{{ URL::to('admin/services/getByID') }}' data-toggle="modal" data-target="#edit">
                                             Edit</button>
                                 <button class="btn btn-danger" data-toggle="modal" data-myid='{{$service->id}}' data-target="#delete">Delete</button>

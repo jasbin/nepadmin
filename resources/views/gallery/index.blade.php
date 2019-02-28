@@ -7,20 +7,23 @@
     <form action="{{route('gallery.index')}}" method="GET">
         @include('inc.search')
     </form>
+
+    @include('inc.checkbox_gallery')
+
     <table id="myTable" class="table table-bordered table-striped text-center" >
             <thead>
                 <tr>
-                    <th style="width: 20%;">Category Name</th>
-                    <th style="width: 60%;">Description</th>
-                    <th style="width: 20%;">Modify</th>
+                    <th style="width: 20%;" class="title">Category Name</th>
+                    <th style="width: 60%;" class="body">Description</th>
+                    <th style="width: 20%;" class="modify">Modify</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($categories as $category)
                     <tr>
-                            <td>{{$category->title}}</td>
-                            <td>{{str_limit($category->description,50,'...')}}</td>
-                            <td>
+                            <td class="title">{{$category->title}}</td>
+                            <td class="body">{{str_limit($category->description,50,'...')}}</td>
+                            <td class="modify">
                             <button type="button" class="btn btn-primary mb-2 mt-2" data-myid='{{$category->id}}' data-route='{{ URL::to('admin/gallery/getByID') }}' data-toggle="modal" data-target="#edit">
                                             Edit</button>
                                 <a href="{{route('gallery.images', $category->id)}}" class="btn btn-success">View</a>
