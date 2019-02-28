@@ -16,7 +16,7 @@ class PostsController extends Controller
     {
         if(!empty($request->search)){
             $search = $request->search;
-            $posts = Post::where('title','LIKE','%'.$search.'%')->orWhere('body','LIKE','%'.$search)->orderBy('created_at','desc')->paginate(2);
+            $posts = Post::where('title','LIKE','%'.$search.'%')->orWhere('body','LIKE','%'.$search.'%')->orderBy('created_at','desc')->paginate(2);
             return view('posts.index')->with('posts',$posts);
         }
             //$posts = Post::all();

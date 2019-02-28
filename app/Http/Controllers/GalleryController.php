@@ -15,7 +15,7 @@ class GalleryController extends Controller
 
         if (!empty($request->search)){
             $search = $request->search;
-            $categories = Category::where('title','LIKE','%'.$search.'%')->orWhere('description','LIKE','%'.$search)->orderBy('created_at','desc')->paginate(7);
+            $categories = Category::where('title','LIKE','%'.$search.'%')->orWhere('description','LIKE','%'.$search.'%')->orderBy('created_at','desc')->paginate(7);
             return view('gallery.index')->with('categories', $categories);
         }
 

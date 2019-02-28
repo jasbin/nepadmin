@@ -11,7 +11,7 @@ class ServicesController extends Controller
     public function index(Request $request){
         if (!empty($request->search)){
             $search = $request->search;
-            $services = Service::where('title','LIKE','%'.$search.'%')->orWhere('body','LIKE','%'.$search)->orderBy('created_at','desc')->paginate(7);
+            $services = Service::where('title','LIKE','%'.$search.'%')->orWhere('body','LIKE','%'.$search.'%')->orderBy('created_at','desc')->paginate(7);
             return view('services.index')->with('services', $services);
         }
 
